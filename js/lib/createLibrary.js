@@ -38,6 +38,12 @@ function createLibrary(guild, channel) {
 			console.log(`${lib.id} directory is created.`);
 		});
 
+		fs.mkdir(
+			`./servers/${lib.id}/temp`, (err) => {
+			if (err) throw err;
+			console.log(`temp directory is created.`);
+		});
+
 		fs.writeFile(
 			`./servers/${lib.id}/data.json`, JSON.stringify(data, null, 4), (err) => { 
 				if (err) throw err;

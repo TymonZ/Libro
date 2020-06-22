@@ -1,0 +1,36 @@
+const fs = require(`fs`);
+
+function deleteImagesType(guild, channel, filetype) {
+	const imageList = require(`./../../servers/${guild.id}/images.json`);
+
+	let il = imageList;
+	let newil = [];
+	let name;
+
+	let numberDeleted = 0;
+
+	for(let i=0; i < il.length; i++) {
+		name = il[i].name.split('.');
+		console.log(name[1]);
+
+		if(name[1] == filetype) {
+			numberDeleted++;
+			console.log(`Image ${il[i].id} deleted`);
+		}
+		else {
+			newil.push(il[i]);
+		}		
+	}
+
+	channel.send(`Deleted **${numberDeleted}** images.`);
+
+	fs.writeFile(
+		`./servers/${guild.id}/images.json`, 
+		JSON.stringify(newil, null, 4), 
+		(err) => { 
+			if (err)
+				throw err;
+	});
+}
+
+exports.deleteImagesType = deleteImagesType;

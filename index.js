@@ -8,9 +8,13 @@ const { getServerID } = require(`./js/lib/getServerID`);
 
 const { getChannelID } = require(`./js/lib/getChannelID`);
 
-const { collectFromChannel } = require("./js/lib/collectFromChannel")
+const { collectFromChannel } = require("./js/lib/downloadImagesTag")
 
-const { deleteTaggedImages } = require("./js/lib/deleteTaggedImages")
+const { downloadImagesTag } = require("./js/lib/downloadImagesTag")
+
+const { deleteImagesTag } = require("./js/lib/deleteImagesTag")
+
+const { deleteImagesType } = require("./js/lib/deleteImagesType")
 
 const { createLibrary } = require("./js/lib/createLibrary");
 
@@ -87,29 +91,60 @@ client.on('message', message => {
 			console.log(`${message.channel.name} channel tag: ${args[4]}`);
 		}
 
-		// DELETE TAG
-		if(message.content.startsWith(`${prefix} delete images tag`)) {
+		
+	}
+
+	// IMAGE LIBRARY MANAGEMENT
+	{
+		// RANDOM IMAGE FROM TAG
+		if(message.content.startsWith(`${prefix} random image tag`)) {
 			const args = message.content.slice(prefix.length).split(' ');
-			if(args.length == 4) {
-				deleteTaggedImages(message.guild, message.channel, args[3]);
+			if(args.length == 5) {
+				randomImage(message.guild, message.channel, args[4]);
 			}
 			else {
 				message.channel.send('This tag do not exist. Type `:: image taglist` for list of all existing tags');
 			}
-		}	
+		}
+
+		// DELETE IMAGES
+		{
+			// DELETE IMAGES TYPE
+			if(message.content.startsWith(`${prefix} delete images type`)) {
+				const args = message.content.slice(prefix.length).split(' ');
+				if(args.length == 5) {
+					deleteImagesType(message.guild, message.channel, args[4]);
+				}
+				else {
+					message.channel.send('Filetype must be one word long. Type `:: image typelist` for list of all filetypes in library');
+				}
+			}	
+
+			// DELETE IMAGES TAG
+			if(message.content.startsWith(`${prefix} delete images tag`)) {
+				const args = message.content.slice(prefix.length).split(' ');
+				if(args.length == 5) {
+					deleteImagesTag(message.guild, message.channel, args[4]);
+				}
+				else {
+					message.channel.send('This tag do not exist. Type `:: image taglist` for list of all tags in library');
+				}
+			}
+		}
+
+		// DOWNLOAD IMAGES TAG
+		if(message.content.startsWith(`${prefix} download images tag`)) {
+			const args = message.content.slice(prefix.length).split(' ');
+			if(args.length == 5) {
+				downloadImagesTag(message.guild, message.channel, args[4]);
+			}
+			else {
+				message.channel.send('This tag do not exist. Type `:: image taglist` for list of all existing tags');
+			}
+		}
 	}
 
-	// RANDOM IMAGE FROM TAG
-	if(message.content.startsWith(`${prefix} random image tag`)) {
-		const args = message.content.slice(prefix.length).split(' ');
-		if(args.length == 5) {
-			randomImage(message.guild, message.channel, args[4]);
-		}
-		else {
-			message.channel.send('This tag do not exist. Type `:: image taglist` for list of all existing tags');
-		}
-	}
-
+	
 	// YANDEX
 	{
 		

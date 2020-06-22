@@ -1,6 +1,6 @@
 const fs = require(`fs`);
 
-function deleteTaggedImages(guild, channel, tagName) {
+function deleteImagesTag(guild, channel, tagName) {
 	const imageList = require(`./../../servers/${guild.id}/images.json`);
 
 	let il = imageList;
@@ -9,22 +9,19 @@ function deleteTaggedImages(guild, channel, tagName) {
 	let numberDeleted = 0;
 
 	for(let i=0; i < il.length; i++) {
-		for(let j=o; j < il[i].tagList.length; j++) {
-			if(il[i].tagList[j] != tagName) {
-				newil.push(il[i]);
-			}
-			else {
+		for(let j=0; j < il[i].tagList.length; j++) {
+			if(il[i].tagList[j] == tagName) {
 				numberDeleted++;
 				console.log(`Image ${il[i].id} deleted`);
+			}
+			else {
+				newil.push(il[i]);
 			}
 		}
 		
 	}
-
-	//il.splice(0);
-	//console.log(il[0].tagList[0]);
-
-	channel.send(`Deleted ${numberDeleted} images.`);
+	
+	channel.send(`Deleted **${numberDeleted}** images.`);
 
 	fs.writeFile(
 		`./servers/${guild.id}/images.json`, 
@@ -35,4 +32,4 @@ function deleteTaggedImages(guild, channel, tagName) {
 	});
 }
 
-exports.deleteTaggedImages = deleteTaggedImages;
+exports.deleteImagesTag = deleteImagesTag;
