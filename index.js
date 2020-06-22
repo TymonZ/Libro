@@ -32,9 +32,16 @@ client.login(token);
 client.on('message', message => {
 
 	// HELP
-	if(message.content.startsWith(`${prefix} help`)) {
+	{
+		if(message.content.startsWith(`${prefix} help`)) {
 		message.channel.send('`:: help` - list of commands\n`:: server id` - basic info\n`:: channel id` - basic channel info\n`:: server init` - creates server library\n`:: channel collect` - adds channel to list of channels that bot is getting images from\n`:: delete tag <xyz>` - deletes all images with tag <xyz>. Images from untagged channels are saved with tag `notag`\n`:: channel tag set <xyz>` - sets channel tag <xyz>');
+		}
+
+		if(message.content.startsWith(`${prefix} channel tag delete`)) {
+			message.channel.send('This command do not exist. Maybe you meant `:: channel tag set <tagName>` or `:: delete images tag <tagName>`');
+		}
 	}
+	
 	
 	// ID COMMANDS
 	{
@@ -81,7 +88,7 @@ client.on('message', message => {
 		}
 
 		// DELETE TAG
-		if(message.content.startsWith(`${prefix} delete tag`)) {
+		if(message.content.startsWith(`${prefix} delete images tag`)) {
 			const args = message.content.slice(prefix.length).split(' ');
 			if(args.length == 4) {
 				deleteTaggedImages(message.guild, message.channel, args[3]);

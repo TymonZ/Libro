@@ -9,13 +9,16 @@ function deleteTaggedImages(guild, channel, tagName) {
 	let numberDeleted = 0;
 
 	for(let i=0; i < il.length; i++) {
-		if(il[i].tagList[0] != tagName) {
-			newil.push(il[i]);
+		for(let j=o; j < il[i].tagList.length; j++) {
+			if(il[i].tagList[j] != tagName) {
+				newil.push(il[i]);
+			}
+			else {
+				numberDeleted++;
+				console.log(`Image ${il[i].id} deleted`);
+			}
 		}
-		else {
-			numberDeleted++;
-			console.log(`Image ${il[i].id} deleted`);
-		}
+		
 	}
 
 	//il.splice(0);
