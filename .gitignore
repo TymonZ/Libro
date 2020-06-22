@@ -1,0 +1,4 @@
+servers/
+node_modules/
+images/
+config.json
