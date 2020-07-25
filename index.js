@@ -79,7 +79,7 @@ client.on('message', message => {
 		if(message.content.startsWith(`${prefix} channel tag set`)) {
 			const args = message.content.slice(prefix.length).split(' ');
 			
-			if(args.length == 5) {
+			if(args.length === 5) {
 				setTag(message.guild, message.channel, args[4]);
 			}
 			else {
@@ -97,7 +97,7 @@ client.on('message', message => {
 		// RANDOM IMAGE FROM TAG
 		if(message.content.startsWith(`${prefix} random image tag`)) {
 			const args = message.content.slice(prefix.length).split(' ');
-			if(args.length == 5) {
+			if(args.length === 5) {
 				randomImage(message.guild, message.channel, args[4]);
 			}
 			else {
@@ -110,7 +110,7 @@ client.on('message', message => {
 			// DELETE IMAGES TYPE
 			if(message.content.startsWith(`${prefix} delete images type`)) {
 				const args = message.content.slice(prefix.length).split(' ');
-				if(args.length == 5) {
+				if(args.length === 5) {
 					deleteImagesType(message.guild, message.channel, args[4]);
 				}
 				else {
@@ -121,7 +121,7 @@ client.on('message', message => {
 			// DELETE IMAGES TAG
 			if(message.content.startsWith(`${prefix} delete images tag`)) {
 				const args = message.content.slice(prefix.length).split(' ');
-				if(args.length == 5) {
+				if(args.length === 5) {
 					deleteImagesTag(message.guild, message.channel, args[4]);
 				}
 				else {
@@ -140,8 +140,7 @@ client.on('message', message => {
 	// DOWNLOADER
 	if(message.attachments.first()) {
 		imageSaver(
-			message.guild,
-			message.channel,
+			message,
 			message.attachments.first()
 		);
 	}

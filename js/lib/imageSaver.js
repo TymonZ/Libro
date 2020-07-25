@@ -2,16 +2,16 @@ const fs = require(`fs`);
 
 const { Image } = require(`./Image`)
 
-function imageSaver(guild, channel, attachment) {
-	const imageList = require(`./../../servers/${guild.id}/images.json`)
+function imageSaver(message, attachment) {
+	const imageList = require(`./../../servers/${message.guild.id}/images.json`)
 
-	const channelList = require(`./../../servers/${guild.id}/channels.json`);
+	const channelList = require(`./../../servers/${message.guild.id}/channels.json`);
 
 	let il = imageList;
 	let cl = channelList;
 
 	for(let i=0; i < cl.length; i++) {
-		if(cl[i].id == channel.id) {
+		if(cl[i].id == message.channel.id) {
 			if(cl[i].collect) {
 				let img = new Image(
 					attachment.id,
@@ -20,24 +20,26 @@ function imageSaver(guild, channel, attachment) {
 					attachment.size
 				);	
 				img.tagList.push(cl[i].tag);
-
 				il.push(img);
 
-				console.log(`${img.name} FILE SAVED`);
+				console.log('FILE SAVED', {
+					'server': message.guild.name,
+					'channel': message.channel.name,
+					'filename': attachment.name,
+					'size': attachment.size
+				});
+				message.react('✅');
 			}
 			else {
-				console.log(`NOT COLLECTING FROM ${channel.name}`);
+				console.log(`NOT COLLECTING FROM ${message.channel.name}`);
 			}
 					
 		}
 	}
 
 	fs.writeFile(
-		`./servers/${guild.id}/images.json`, 
-		JSON.stringify(il, null, 4), 
-		(err) => { 
-			if (err)
-				throw err;
-	});
+		`./servers/${message.guild.id}/images.json`, 
+		JSON.stringify(il, null, 4),
+		(err) => { if (err) throw err });
 }
 exports.imageSaver = imageSaver;
