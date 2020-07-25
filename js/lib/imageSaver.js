@@ -33,7 +33,6 @@ function imageSaver(message, attachment) {
 			else {
 				console.log(`NOT COLLECTING FROM ${message.channel.name}`);
 			}
-					
 		}
 	}
 

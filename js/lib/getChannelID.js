@@ -12,6 +12,7 @@ function getChannelID(guild, channel) {
 	let il = imageList;
 
 	// gets info from channels.json
+	
 	for(let i=0; i < cl.length; i++) {
 		if(cl[i].id == channel.id) {
 			collects = cl[i].collect;

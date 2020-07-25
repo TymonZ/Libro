@@ -70,8 +70,8 @@ client.on('message', message => {
 
 	// TAG MANAGEMENT
 	{
-		// SHOW IMAGE TAG LIST
-		if(message.content.startsWith(`${prefix} image taglist`)) {
+		// SHOW TAG LIST
+		if(message.content.startsWith(`${prefix} taglist`)) {
 			showImageTaglist(message.guild, message.channel)
 		}
 
@@ -116,7 +116,7 @@ client.on('message', message => {
 				else {
 					message.channel.send('Filetype must be one word long. Type `:: image typelist` for list of all filetypes in library');
 				}
-			}	
+			}
 
 			// DELETE IMAGES TAG
 			if(message.content.startsWith(`${prefix} delete images tag`)) {
