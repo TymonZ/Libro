@@ -8,9 +8,7 @@ const { getServerID } = require(`./js/lib/getServerID`);
 
 const { getChannelID } = require(`./js/lib/getChannelID`);
 
-const { collectFromChannel } = require("./js/lib/downloadImagesTag")
-
-const { downloadImagesTag } = require("./js/lib/downloadImagesTag")
+const { collectFromChannel } = require("./js/lib/collectFromChannel")
 
 const { deleteImagesTag } = require("./js/lib/deleteImagesTag")
 
@@ -129,17 +127,6 @@ client.on('message', message => {
 				else {
 					message.channel.send('This tag do not exist. Type `:: image taglist` for list of all tags in library');
 				}
-			}
-		}
-
-		// DOWNLOAD IMAGES TAG
-		if(message.content.startsWith(`${prefix} download images tag`)) {
-			const args = message.content.slice(prefix.length).split(' ');
-			if(args.length == 5) {
-				downloadImagesTag(message.guild, message.channel, args[4]);
-			}
-			else {
-				message.channel.send('This tag do not exist. Type `:: image taglist` for list of all existing tags');
 			}
 		}
 	}

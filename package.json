@@ -9,9 +9,10 @@
   "author": "Pxltr / Tymon Zaniewski",
   "license": "ISC",
   "dependencies": {
+    "archiver": "^4.0.1",
     "discord.js": "^12.2.0",
     "http": "0.0.1-security",
     "request": "^2.88.2",
-    "zip-a-folder": "0.0.12"
+    "zip-local": "^0.3.4"
   }
 }
