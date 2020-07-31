@@ -35,8 +35,8 @@ client.on('message', message => {
 
 	// HELP
 	{
-		if(message.content.startsWith(`${prefix} help`)) {
-		message.channel.send('`:: help` - list of commands\n`:: server id` - basic info\n`:: channel id` - basic channel info\n`:: server init` - creates server library\n`:: channel collect` - adds channel to list of channels that bot is getting images from\n`:: delete tag <xyz>` - deletes all images with tag <xyz>. Images from untagged channels are saved with tag `notag`\n`:: channel tag set <xyz>` - sets channel tag <xyz>');
+		if(message.content.startsWith(`${prefix} help`) || message.content.startsWith(`${prefix} h`)) {
+		message.channel.send('`:: help`/`:: h` - list of commands\n`:: s` - omitts downloading attached image\n`:: server id` - basic server info\n`:: channel id` - basic channel info\n`:: server init` - creates server library\n`:: channel collect` - adds channel to list of channels that bot is getting images from\n`:: delete tag <xyz>` - deletes all images with tag <xyz>. Images from untagged channels are saved with tag `notag`\n`:: channel tag set <xyz>` - sets channel tag <xyz>');
 		}
 
 		if(message.content.startsWith(`${prefix} channel tag delete`)) {
@@ -138,7 +138,7 @@ client.on('message', message => {
 	}
 
 	// DOWNLOAD
-	if(message.content.startsWith(`${prefix} s`)) {
+	if(message.content.startsWith(`${prefix} s`) || message.content.startsWith(`${prefix} skip`)) {
 		message.react('⏩');
 		console.log(`image omitted`);
 	}
