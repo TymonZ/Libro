@@ -9,11 +9,13 @@ function deleteImagesType(guild, channel, filetype) {
 
 	let numberDeleted = 0;
 
+	console.log('FILETYPE:', filetype);
+
 	for(let i=0; i < il.length; i++) {
 		name = il[i].name.split('.');
-		console.log(name[1]);
+		console.log(name.pop());
 
-		if(name[1] == filetype) {
+		if(name.pop() == filetype) {
 			numberDeleted++;
 			console.log(`Image ${il[i].id} deleted`);
 		}
@@ -28,9 +30,9 @@ function deleteImagesType(guild, channel, filetype) {
 		`./servers/${guild.id}/images.json`, 
 		JSON.stringify(newil, null, 4), 
 		(err) => { 
-			if (err)
-				throw err;
-	});
+			if (err) throw err;
+		}
+	);
 }
 
 exports.deleteImagesType = deleteImagesType;

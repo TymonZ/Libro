@@ -8,11 +8,11 @@ const { getServerID } = require(`./js/lib/getServerID`);
 
 const { getChannelID } = require(`./js/lib/getChannelID`);
 
-const { collectFromChannel } = require("./js/lib/collectFromChannel")
+const { collectFromChannel } = require("./js/lib/collectFromChannel");
 
-const { deleteImagesTag } = require("./js/lib/deleteImagesTag")
+const { deleteImagesTag } = require("./js/lib/deleteImagesTag");
 
-const { deleteImagesType } = require("./js/lib/deleteImagesType")
+const { deleteImagesType } = require("./js/lib/deleteImagesType");
 
 const { createLibrary } = require("./js/lib/createLibrary");
 
