@@ -101,7 +101,7 @@ client.on('message', message => {
 				randomImage(message.guild, message.channel, args[4]);
 			}
 			else {
-				message.channel.send('This tag do not exist. Type `:: image taglist` for list of all existing tags');
+				message.channel.send('This tag do not exist. Type `:: taglist` for list of all existing tags');
 			}
 		}
 
@@ -137,8 +137,12 @@ client.on('message', message => {
 		
 	}
 
-	// DOWNLOADER
-	if(message.attachments.first()) {
+	// DOWNLOAD
+	if(message.content.startsWith(`${prefix} s`)) {
+		message.react('⏩');
+		console.log(`image omitted`);
+	}
+	else if(message.attachments.first()) {
 		imageSaver(
 			message,
 			message.attachments.first()
