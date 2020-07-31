@@ -108,15 +108,15 @@ client.on('message', message => {
 		// DELETE IMAGES
 		{
 			// DELETE IMAGES TYPE
-			if(message.content.startsWith(`${prefix} delete images type`)) {
-				const args = message.content.slice(prefix.length).split(' ');
-				if(args.length === 5) {
-					deleteImagesType(message.guild, message.channel, args[4]);
-				}
-				else {
-					message.channel.send('Filetype must be one word long. Type `:: image typelist` for list of all filetypes in library');
-				}
-			}
+			// if(message.content.startsWith(`${prefix} delete images type`)) {
+			// 	const args = message.content.slice(prefix.length).split(' ');
+			// 	if(args.length === 5) {
+			// 		deleteImagesType(message.guild, message.channel, args[4]);
+			// 	}
+			// 	else {
+			// 		message.channel.send('Filetype must be one word long. Type `:: image typelist` for list of all filetypes in library');
+			// 	}
+			// }
 
 			// DELETE IMAGES TAG
 			if(message.content.startsWith(`${prefix} delete images tag`)) {
@@ -125,16 +125,10 @@ client.on('message', message => {
 					deleteImagesTag(message.guild, message.channel, args[4]);
 				}
 				else {
-					message.channel.send('This tag do not exist. Type `:: image taglist` for list of all tags in library');
+					message.channel.send('This tag do not exist. Type `:: taglist` for list of all tags in library');
 				}
 			}
 		}
-	}
-
-	
-	// YANDEX
-	{
-		
 	}
 
 	// DOWNLOAD
