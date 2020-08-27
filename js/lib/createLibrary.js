@@ -16,6 +16,7 @@ function createLibrary(guild, channel) {
 		if(arr[i].type == 'text') {
 			let ch = new ChannelLibrary(
 				arr[i].id,
+				arr[i].name,
 				false,
 				'notag'
 			);

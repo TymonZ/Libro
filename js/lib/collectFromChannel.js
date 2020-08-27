@@ -12,7 +12,6 @@ function collectFromChannel(guild, channel) {
 			if(ch[i].collect == false) {
 				ch[i].collect = true;
 				channel.send(`Started collecting from channel #${channel.name}.`);
-				channel.send('Now, give it custom tag (`:: channel tag set as <name of tag>`)');
 			}
 			else {
 				ch[i].collect = false
