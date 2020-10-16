@@ -10,7 +10,6 @@ function updateChannelList(channel) {
 			const channelList = require(`./../../servers/${channel.guild.id}/channels.json`);
 
 			let cl = channelList;
-
 			for(let i = 0; i < cl.length; i++) {
 				if(channel.id == cl[i].id) {
 					console.log(`CHANNEL NAME UPDATED: ${cl[i].name} => ${channel.name}`);

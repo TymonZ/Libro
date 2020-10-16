@@ -1,4 +1,4 @@
-const { randomImage } = require("./js/lib/randomImage");
+const { randomImageName } = require("./js/lib/randomImageName");
 
 const { getServerID } = require(`./js/lib/getServerID`);
 
@@ -21,73 +21,63 @@ const client = new Discord.Client();
 client.once('ready', () => {
 	console.log("Ready")
 	client.user.setActivity(':: help');
-
-	//update every channel name
-	for (let i = 0; i < guild.channels.cache.array().length; i++) {
-		let chan = arr[i];
-		if(chan.type == 'text') {
-			updateChannelList(chan);
-		}
-	}
 })
 
 client.login(token);
 
 client.on('channelUpdate', (channel) => {
-	console.log(channel.name);
 	updateChannelList(channel);
 });
 
 client.on('message', message => {
 
 	// HELP
-	{
-		if(message.content == `${prefix} help` || message.content == `${prefix} h`) {
-		message.channel.send(
-			'**HELP:**\n`:: help`/`:: h` - list of commands\n`:: server id` - basic server info\n`:: channel id` - basic channel info\n \n**DO AFTER INVITING BOT:**\n`:: server init` - creates server library\n`:: channel collect` - adds channel to list of channels that bot is getting images from\n \n**OTHER COMMANDS:**\n`:: skip`/`:: s` - omitts downloading of attached image\n');
-		}
+	if(message.content == `${prefix} help` || message.content == `${prefix} h`) {
+	message.channel.send(
+		'**HELP:**\n`:: help`/`:: h` - list of commands\n`:: server id` - basic server info\n`:: channel id` - basic channel info\n \n**DO AFTER INVITING BOT:**\n`:: server init` - creates server library\n`:: channel collect` - adds channel to list of channels that bot is getting images from\n \n**OTHER COMMANDS:**\n`:: skip`/`:: s` - omitts downloading of attached image\n`:: random image chan` - sends random image from channel you requested\n`:: update chanlist` - manualy updates channel names in library');
 	}
-	
-	// ID COMMANDS
-	{
-		// SERVER ID
-		if(message.content == `${prefix} server id`) {
-			getServerID(message.guild, message.channel);
-		}
-
-		// CHANNEL ID	
-		if(message.content == `${prefix} channel id`) {
-			getChannelID(message.guild, message.channel);
-		}
+	// SERVER ID
+	else if(message.content == `${prefix} server id`) {
+		getServerID(message.guild, message.channel);
 	}
-	
+	// CHANNEL ID	
+	else if(message.content == `${prefix} channel id`) {
+		getChannelID(message.guild, message.channel);
+	}
 	// INITIATE
-	if(message.content == `${prefix} server init`) {
+	else if(message.content == `${prefix} server init`) {
 		createLibrary(message.guild, message.channel);
 	}
-
 	// COLLECT FROM CHANNEL
-	if(message.content == `${prefix} channel collect`) {
+	else if(message.content == `${prefix} channel collect`) {
 		collectFromChannel(message.guild, message.channel);
 	}
-
-	// IMAGE LIBRARY MANAGEMENT
-	{
-		// RANDOM IMAGE FROM TAG
-		if(message.content.startsWith(`${prefix} random image tag`)) {
-			const args = message.content.slice(prefix.length).split(' ');
-			if(args.length === 5) {
-				randomImage(message.guild, message.channel, args[4]);
-			}
-			else {
-				message.channel.send('This tag do not exist. Type `:: taglist` for list of all existing tags');
-			}
+	// UPDATE CHANLIST
+	else if(message.content == `${prefix} update chanlist`) {
+		updateChannelList(message.channel);
+		message.react('✅');
+	}
+	// RANDOM IMAGE FROM NAME
+	else if(message.content.startsWith(`${prefix} random image chan`)) {
+		const args = message.content.slice(prefix.length).split(' ');
+		if(args.length === 5) {
+			randomImageName(message.guild, message.channel, args[4]);
 		}
+		else {
+			message.channel.send('This channel name do not exist. Check the spelling, or try updating channel names manually (`:: update chanlist`)');
+		}
+	}
+	//MAKE DOWNLOAD SKIP VALID COMMAND
+	else if(message.content == `${prefix} s`|| message.content == `${prefix} skip`) {
+		
+	}
+	// ELSE
+	else if(message.content.startsWith(`${prefix}`)) {
+		message.channel.send("That's not a real command dude. Check te spelling, or use `:: h`");
 	}
 
 	// DOWNLOAD
-	if(
-		message.content == `${prefix} s`|| message.content == `${prefix} skip`) {
+	if(message.content == `${prefix} s`|| message.content == `${prefix} skip`) {
 		message.react('⏩');
 		console.log(`image omitted`);
 	}
