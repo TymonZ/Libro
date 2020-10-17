@@ -3,4 +3,6 @@ servers/
 node_modules/
 images/
 config.json
+credentials.json
+token.json
 package-lock.json

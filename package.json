@@ -1,5 +1,5 @@
 {
-  "name": "imagescaler",
+  "name": "libro",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,6 +11,7 @@
   "dependencies": {
     "archiver": "^4.0.1",
     "discord.js": "^12.2.0",
+    "googleapis": "^39.2.0",
     "http": "0.0.1-security",
     "request": "^2.88.2",
     "zip-local": "^0.3.4"

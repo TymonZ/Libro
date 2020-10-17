@@ -1,3 +1,4 @@
+/* LIB MODULES */
 const { randomImageName } = require("./js/lib/randomImageName");
 
 const { getServerID } = require(`./js/lib/getServerID`);
@@ -12,6 +13,11 @@ const { updateChannelList } = require("./js/lib/updateChannelList");
 
 const { imageSaver } = require("./js/lib/imageSaver");
 
+/* CLOUD MODULES */
+
+const { googleDriveSetup } = require("./js/cloud-sync/googleDriveSetup");
+
+/* DISCORD.JS */
 const { prefix, token } = require('./config.json');
 
 const Discord = require(`discord.js`);
@@ -19,8 +25,13 @@ const Discord = require(`discord.js`);
 const client = new Discord.Client();
 
 client.once('ready', () => {
-	console.log("Ready")
+	// Connect with gdrive and do callback function
+	googleDriveSetup(() =>{
+		
+	});
+
 	client.user.setActivity(':: help');
+	console.log("DISCORD BOT READY");
 })
 
 client.login(token);
@@ -67,7 +78,7 @@ client.on('message', message => {
 			message.channel.send('This channel name do not exist. Check the spelling, or try updating channel names manually (`:: update chanlist`)');
 		}
 	}
-	//MAKE DOWNLOAD SKIP VALID COMMAND
+	//MAKE "SKIP" A VALID COMMAND
 	else if(message.content == `${prefix} s`|| message.content == `${prefix} skip`) {
 		
 	}
