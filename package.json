@@ -13,6 +13,7 @@
     "discord.js": "^12.2.0",
     "googleapis": "^39.2.0",
     "http": "0.0.1-security",
+    "on-finished": "^2.3.0",
     "request": "^2.88.2",
     "zip-local": "^0.3.4"
   }

@@ -4,11 +4,10 @@ const { ChannelLibrary } = require("./ChannelLibrary");
 
 const fs = require(`fs`);
 
-let ID;
-let NAME;
-let data;
+const { google } = require('googleapis');
+const { drive } = require("googleapis/build/src/apis/drive");
 
-function createLibrary(guild, channel) {
+function createLibrary(guild, channel, auth) {
 	let lib = new ServerLibrary(guild.id, guild.name);
 	
 	arr = guild.channels.cache.array();
@@ -29,12 +28,8 @@ function createLibrary(guild, channel) {
 		channel.send('The server library alredy exists!');
 	}
 	else {
-		ID = lib.id;
-		NAME = lib.name;
-		data = {ID, NAME}
 
-		fs.mkdir(
-			`./servers/${lib.id}`, (err) => {
+		fs.mkdir(`./servers/${lib.id}`, (err) => {
 			if (err) throw err;
 			console.log(`${lib.id} directory is created.`);
 
@@ -42,12 +37,6 @@ function createLibrary(guild, channel) {
 				`./servers/${lib.id}/temp`, (err) => {
 				if (err) throw err;
 				console.log(`temp directory is created.`);
-			});
-			
-			fs.writeFile(
-				`./servers/${lib.id}/data.json`, JSON.stringify(data, null, 4), (err) => { 
-					if (err) throw err;
-					console.log(`data.json file is created.`);
 			});
 	
 			fs.writeFile(
@@ -61,7 +50,38 @@ function createLibrary(guild, channel) {
 					if (err) throw err; 
 					console.log(`images.json file is created.`);
 			});
+
+			const drive = google.drive({version: 'v3', auth});
+
+			// Create google drive folder
+			drive.files.create({
+				requestBody: {
+					'name': lib.id,
+					'mimeType': 'application/vnd.google-apps.folder'
+				},
+				fields: 'id'
+			}, (err, file) => {
+				if (err) {
+					// Handle error
+					console.error(err);
+				} else {
+					console.log('Folder Id: ', file.id);
+
+					const data = {
+						'id': lib.id,
+						'name': lib.name,
+					}
+					
+					fs.writeFile(
+						`./servers/${lib.id}/data.json`, JSON.stringify(data, null, 4), (err) => { 
+							if (err) throw err;
+							console.log(`data.json file is created.`);
+					});
+				}
+			});
 		});
+
+		
 
 		channel.send('The server library have been created! Now tell me what channels to collect from (`:: channel collect`)');
 	}

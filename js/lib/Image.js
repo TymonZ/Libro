@@ -5,6 +5,7 @@ class Image {
 		this.url = url;
 		this.size = size;
 		this.chan = channelID;
+		this.isOnGDrive = false;
 	}
 }
 exports.Image = Image;

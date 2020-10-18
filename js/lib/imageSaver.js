@@ -6,8 +6,7 @@ const { Image } = require(`./Image`)
 function imageSaver(message, attachment) {
 	fs.access(`./servers/${message.guild.id}`, (err) => {
 		if(err) {
-			console.log(`Server ${message.guild.name} is not initialized`);
-			throw err;
+			console.error(`Server ${message.guild.name} is not initialized`);
 		}
 		else {
 			const imageList = require(`./../../servers/${message.guild.id}/images.json`)
