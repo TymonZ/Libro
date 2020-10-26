@@ -36,7 +36,7 @@ client.on('message', message => {
 	// HELP
 	if(message.content == `${prefix} help` || message.content == `${prefix} h`) {
 	message.channel.send(
-		'**HELP:**\n`:: help`/`:: h` - list of commands\n`:: server id` - basic server info\n`:: channel id` - basic channel info\n \n**DO AFTER INVITING BOT:**\n`:: server init` - creates server library\n`:: channel collect` - adds channel to list of channels that bot is getting images from\n \n**OTHER COMMANDS:**\n`:: backup files` - back up saved images to google drive\n`:: skip`/`:: s` - omitts downloading of attached image\n`:: random image chan` - sends random image from channel you requested\n`:: update chanlist` - manualy updates channel names in library');
+		'**HELP:**\n`:: help`/`:: h` - list of commands\n`:: server id` - basic server info\n`:: channel id` - basic channel info\n \n**DO AFTER INVITING BOT:**\n`:: server init` - creates server library\n`:: channel collect` - adds channel to list of channels that bot is getting images from\n \n**OTHER COMMANDS:**\n`:: skip`/`:: s` - omitts downloading of attached image\n`:: random image chan` - sends random image from channel you requested\n`:: update chanlist` - manualy updates channel names in library');
 	}
 	// SERVER ID
 	else if(message.content == `${prefix} server id`) {
