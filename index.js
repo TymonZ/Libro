@@ -59,11 +59,6 @@ client.on('message', message => {
 		updateChannelList(message.channel);
 		message.react('✅');
 	}
-	// BACKUP FILES TO GOOGLE DRIVE
-	else if(message.content == `${prefix} backup files`) {
-		// backup2GoogleDrive(auth, message.guild);
-		backup2GoogleDrive(auth, message).catch(console.error);
-	}
 	// RANDOM IMAGE FROM NAME
 	else if(message.content.startsWith(`${prefix} random image chan`)) {
 		const args = message.content.slice(prefix.length).split(' ');
