@@ -4,8 +4,6 @@ const { ChannelLibrary } = require("./ChannelLibrary");
 
 const fs = require(`fs`);
 
-const { google } = require('googleapis');
-
 function createLibrary(guild, channel) {
 	let lib = new ServerLibrary(guild.id, guild.name);
 	

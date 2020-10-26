@@ -48,7 +48,7 @@ client.on('message', message => {
 	}
 	// INITIATE
 	else if(message.content == `${prefix} server init`) {
-		createLibrary(message.guild, message.channel, auth);
+		createLibrary(message.guild, message.channel);
 	}
 	// COLLECT FROM CHANNEL
 	else if(message.content == `${prefix} channel collect`) {
