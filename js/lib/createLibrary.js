@@ -5,9 +5,8 @@ const { ChannelLibrary } = require("./ChannelLibrary");
 const fs = require(`fs`);
 
 const { google } = require('googleapis');
-const { drive } = require("googleapis/build/src/apis/drive");
 
-function createLibrary(guild, channel, auth) {
+function createLibrary(guild, channel) {
 	let lib = new ServerLibrary(guild.id, guild.name);
 	
 	arr = guild.channels.cache.array();
@@ -51,37 +50,7 @@ function createLibrary(guild, channel, auth) {
 					console.log(`images.json file is created.`);
 			});
 
-			const drive = google.drive({version: 'v3', auth});
-
-			// Create google drive folder
-			drive.files.create({
-				requestBody: {
-					'name': lib.id,
-					'mimeType': 'application/vnd.google-apps.folder'
-				},
-				fields: 'id'
-			}, (err, file) => {
-				if (err) {
-					// Handle error
-					console.error(err);
-				} else {
-					console.log('Folder Id: ', file.id);
-
-					const data = {
-						'id': lib.id,
-						'name': lib.name,
-					}
-					
-					fs.writeFile(
-						`./servers/${lib.id}/data.json`, JSON.stringify(data, null, 4), (err) => { 
-							if (err) throw err;
-							console.log(`data.json file is created.`);
-					});
-				}
-			});
 		});
-
-		
 
 		channel.send('The server library have been created! Now tell me what channels to collect from (`:: channel collect`)');
 	}
