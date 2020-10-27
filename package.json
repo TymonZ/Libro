@@ -16,5 +16,8 @@
     "on-finished": "^2.3.0",
     "request": "^2.88.2",
     "zip-local": "^0.3.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3"
   }
 }

@@ -7,7 +7,7 @@ const fs = require('fs');
 const port = 3000;
 
 // Run discord.js bot
-botSetup();
+// botSetup();
 
 const server = http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': 'text/html' });
