@@ -2,23 +2,22 @@
   "name": "libro",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/main.js",
   "scripts": {
-    "start": "node ./src/lib/botSetup.js",
+    "start": "node ./src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Pxltr / Tymon Zaniewski",
   "license": "ISC",
   "dependencies": {
-    "archiver": "^4.0.1",
-    "discord.js": "^12.2.0",
+    "archiver": "^4.0.2",
+    "discord.js": "^12.4.1",
     "googleapis": "^39.2.0",
     "http": "0.0.1-security",
+    "node-forge": ">=0.10.0",
     "on-finished": "^2.3.0",
     "request": "^2.88.2",
     "zip-local": "^0.3.4"
   },
-  "devDependencies": {
-    "@babel/core": "^7.12.3"
-  }
+  "devDependencies": {}
 }

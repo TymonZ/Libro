@@ -1,22 +1,22 @@
 function botSetup() {
 
 	/* LIB MANAGEMENT */
-	const { randomImageName } = require("./lib/randomImageName");
+	const { randomImageName } = require("./modules/randomImageName");
 
-	const { updateChannelList } = require("./lib/updateChannelList");
+	const { updateChannelList } = require("./modules/updateChannelList");
 
-	const { getServerID } = require("./lib/getServerID");
+	const { getServerID } = require("./modules/getServerID");
 
-	const { getChannelID } = require("./lib/getChannelID");
+	const { getChannelID } = require("./modules/getChannelID");
 
-	const { imageSaver } = require("./lib/imageSaver");
+	const { imageSaver } = require("./modules/imageSaver");
 
-	const { createLibrary } = require("./lib/createLibrary");
+	const { createLibrary } = require("./modules/createLibrary");
 
-	const { collectFromChannel } = require("./lib/collectFromChannel");
+	const { collectFromChannel } = require("./modules/collectFromChannel");
 
 	/* DISCORD.JS */
-	const { prefix, token } = require('../config.json');
+	const { prefix, token } = require('../../config.json');
 
 	const Discord = require(`discord.js`);
 

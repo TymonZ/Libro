@@ -1,4 +1,4 @@
-const { botSetup } = require("./js/botSetup");
+const { botSetup } = require("./lib/botSetup");
 
 const http = require('http');
 
@@ -11,7 +11,7 @@ const port = 3000;
 
 const server = http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': 'text/html' });
-    fs.readFile('./js/web/index.html', (error, data) => {
+    fs.readFile('./src/web/index.html', (error, data) => {
         if(error) {
             res.writeHead(404);
             res.write('Error: File Not Found');
