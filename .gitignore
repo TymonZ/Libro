@@ -1,4 +1,4 @@
 servers/
 node_modules/
-config.json
+bot-config.json
 package-lock.json
