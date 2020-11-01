@@ -1,31 +1,5 @@
-const { botSetup } = require("./lib/botSetup");
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './web/components/App';
 
-const http = require('http');
-
-const fs = require('fs');
-
-const port = 3000;
-
-// Run discord.js bot
-// botSetup();
-
-const server = http.createServer((req, res) => {
-    res.writeHead(200, { 'Content-Type': 'text/html' });
-    fs.readFile('./src/web/index.html', (error, data) => {
-        if(error) {
-            res.writeHead(404);
-            res.write('Error: File Not Found');
-        } else {
-            res.write(data);
-        }
-        res.end();
-    });
-});
-
-server.listen(port, (error) => {
-    if(error) {
-        console.error(error);
-    } else {
-        console.log('SERVER IS LISTENING ON PORT', port);
-    }
-})
+ReactDOM.render(<App />, document.getElementById('app'));

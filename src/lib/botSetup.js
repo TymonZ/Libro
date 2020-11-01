@@ -16,7 +16,7 @@ function botSetup() {
 	const { collectFromChannel } = require("./modules/collectFromChannel");
 
 	/* DISCORD.JS */
-	const { prefix, token } = require('../../config.json');
+	const { prefix, token } = require('../../bot-config.json');
 
 	const Discord = require(`discord.js`);
 
